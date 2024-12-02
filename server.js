@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 
 
 // API Routes
-
+app.get("/",(req,res)=>{
+    res.send("welcome to app");
+})
 // Get all students
 app.get('/api/students', (req, res) => {
   db.query('SELECT * FROM student', (err, results) => {
@@ -102,9 +104,7 @@ app.delete('/api/students/:id', (req, res) => {
     });
   });
   
-app.get("/",(req,res)=>{
-    res.send("welcome to app");
-})
+
 // Start Server
 const PORT = 5000;
 app.listen(PORT, () => {
