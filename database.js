@@ -1,20 +1,26 @@
 const mysql = require('mysql2');
+require('dotenv').config();
 
+db_host=process.env.HOST;
+db_user=process.env.USER;
+db_password=process.env.PASSWORD;
+database_name=process.env.DATABASE;
+db_port=process.env.DB_PORT;
 // Create a MySQL connection
 const db = mysql.createConnection({
-  host: 'sql12.freesqldatabase.com', // Replace with your hostname
-  user: 'sql12749192',      // Replace with your username
-  password: 'IVKVT57kDL',  // Replace with your password
-  database: 'sql12749192',      // Replace with your database name
-  port: 3306,                 // Replace with your port (if not 3306)
+  host: db_host, 
+  user: db_user,      
+  password: db_password,  
+  database: database_name,     
+  port: db_port,                 
   connectTimeout: 10000,
-  ssl: false// Add if SSL is required
+  ssl: false
 });
 
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
-    process.exit(1); // Exit the app if the database connection fails
+    process.exit(1); 
   } else {
     console.log('Connected to MySQL database.');
   }
@@ -38,8 +44,7 @@ const createTableQuery = `
       console.log('Table created successfully.');
     }
 
-    // Close the connection
-    // db.end();
+    
   });
 // Connect to MySQL
 
